@@ -1,16 +1,18 @@
 from menu import *
-from events import updateDate
+from events import *
 import os
-
-year = 2018
-month = 4
-day = 7
 money = 1000
 pos = 'h'
 
+gyomlalas()
+
 while money > 0:
     os.system("cls")
-    date = updateDate(year, month, day)
-    header(1000, date, 100, 0)
-    if menuHouse() == '1':
-        map(pos, 1000, date, 100, 0) 
+    date = updateDate()
+    header(money, date, 100, 0)
+    match menuHouse():
+        case '1': 
+            map(pos, 1000, date, 100, 0) 
+
+        case 'a':
+            pass
