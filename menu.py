@@ -1,25 +1,27 @@
-import os
+import os, events
 
-def header(money, date, energy, sus):
+def header():
     print("------------------------------------------")
-    print(f"Pénz: {money}€\t\tDátum: {date}")
-    print(f"Energia: {energy}%\t\tGyanú: {sus}%")
+    print(f"Pénz: {events.money}€\t\tDátum:", events.date)
+    print(f"Energia: {events.energy}%\t\tGyanú: {events.sus}%")
     print("------------------------------------------")
 
 def menuHouse():
     v = ''
     while v != '1' and v != 'a':
+        os.system("cls")
+        header()
         print("1\t Térkép")
         print("a\t Alvás")
         v = input("Választás: ")
     return v
 
-def map(pos, money, date, energy, sus):
+def map():
     v=''
 
     while v != '1' and v != '2' and v != '3' and v != '4' and v != '5' and v != '6' and v != '7' and v != '8' and v != '9' and v != '10' and v != '11' and v != 'f' and v != 'b' and v != 'a' and v != 't' and v != '0':
         os.system("cls")
-        header(1000, date, 100, 0)
+        header()
         print("1\t 1.es föld", end = '\t\t')
         print("2\t 2.es föld")
         print("3\t 3.es föld", end = '\t\t')
@@ -29,7 +31,7 @@ def map(pos, money, date, energy, sus):
         print("7\t 7.es föld", end = '\t\t')
         print("8\t 8.es föld")
         print("9\t 9.es föld", end = '\t\t')
-        print("10.. 10.es föld")
+        print("10\t 10.es föld")
         print("11.. 11.es föld")
         print("\nt\t Örökölt föld", end = '\t')
         print("b\t Bank")

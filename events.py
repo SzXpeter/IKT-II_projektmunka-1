@@ -2,10 +2,14 @@ import time
 
 year = 2018
 month = 0
+money = 1000
+pos = 'v'
+date = ""
+energy = 100
+sus = 0
 
 def updateDate():
-    
-    global year, month
+    global year, month, date
     month += 6
 
     if month > 12:
@@ -19,23 +23,21 @@ def updateDate():
         date += str(month)
     else:
         date = date + '.' + str(month)
-    
-    return date
+
 
 def gyomlalas():
     max_time = 3
-    print(f"Mash any key then hit ENTER within {max_time} seconds...")
+    print(f"Spamelj bármilyen billentyűt {max_time} másodpercen belűl...")
     time.sleep(2)
-    start_time = time.time()
     count = input("GO! ------> ")
+    start_time = time.time()
 
     if time.time() - start_time < max_time:
         if len(count) >= 30:
-            print("Success!")
+            print("Siker!")
         else:
-            print("You failed.")
-            print("Túl kevás")
+            print("Sikertelen próbálkozás.")
     else:
-        print("You failed.")
+        print("Sikertelen próbálkozás.")
 
     input()
