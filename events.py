@@ -7,6 +7,7 @@ pos = 'v'
 date = ""
 energy = 100
 sus = 0
+inventory = []
 
 def updateDate():
     global year, month, date
@@ -41,3 +42,21 @@ def gyomlalas():
         print("Sikertelen próbálkozás.")
 
     input()
+
+def listInventory():
+    print('Az inventoryd tartalma: ', end='')
+    for i in range(len(inventory)):
+        if i == len(inventory) - 1:
+            print(inventory[i])
+        else:
+            print(inventory[i], end=', ')
+
+    input('\nNyomj ENTER -t a folytatáshoz...')
+
+def addInventory(item):
+    inventory.append(item)
+    print(f'{item} sikeresen hozzáadva az Inventorydhoz.')
+
+def removeInventory(item):
+    inventory.remove(item)
+    print(f'{item} sikeresen eltávolítva az Inventorydból.')

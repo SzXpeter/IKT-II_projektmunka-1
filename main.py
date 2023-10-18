@@ -10,3 +10,5 @@ while events.money > 0:
         case 'a':
             events.updateDate()
             
+        case 'i':
+            events.listInventory()

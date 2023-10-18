@@ -8,11 +8,12 @@ def header():
 
 def menuHouse():
     v = ''
-    while v != '1' and v != 'a':
+    while v != '1' and v != 'a' and v != 'i':
         os.system("cls")
         header()
         print("1\t Térkép")
         print("a\t Alvás")
+        print("i\t Inventory")
         v = input("Választás: ")
     return v
 
