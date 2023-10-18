@@ -9,10 +9,9 @@ while events.money > 0:
             match menu.menuHouse():
                 case '1': 
                     menu.map() 
-
-        case 'a':
-            events.updateDate()
-            energy = 100
+                case 'a':
+                    events.updateDate()
+                    energy = 100
             
         case 'i':
             events.listInventory()
