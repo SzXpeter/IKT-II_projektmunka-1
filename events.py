@@ -3,11 +3,10 @@ import time
 year = 2018
 month = 0
 money = 1000
-pos = 'v'
+pos = 'h'
 date = ""
 energy = 100
 sus = 0
-
 def updateDate():
     global year, month, date
     month += 6
