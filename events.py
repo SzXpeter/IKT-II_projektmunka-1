@@ -5,7 +5,7 @@ month = 0
 money = 1000
 pos = 'v'
 date = ""
-energy = 100
+energy = 0
 sus = 0
 inventory = []
 
@@ -60,3 +60,8 @@ def addInventory(item):
 def removeInventory(item):
     inventory.remove(item)
     print(f'{item} sikeresen eltávolítva az Inventorydból.')
+
+def isEnergyLow():
+    if energy <= 0:
+        energy = 50
+        money -= money*0.15

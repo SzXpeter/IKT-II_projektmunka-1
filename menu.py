@@ -33,7 +33,7 @@ def map():
         print("8\t 8.es föld")
         print("9\t 9.es föld", end = '\t\t')
         print("10\t 10.es föld")
-        print("11.. 11.es föld")
+        print("11\t 11.es föld")
         print("\nt\t Örökölt föld", end = '\t')
         print("b\t Bank")
         print("a\t Áruház", end = '\t\t')
