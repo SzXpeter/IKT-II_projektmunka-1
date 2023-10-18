@@ -8,6 +8,7 @@ while events.money > 0:
         case 'h':
             match menu.menuHouse():
                 case '1': 
+<<<<<<< HEAD
                     valasztas = menu.map()
                     
                     match valasztas:
@@ -41,6 +42,12 @@ while events.money > 0:
         case 'a':
             events.updateDate()
             energy = 100
+=======
+                    menu.map() 
+                case 'a':
+                    events.updateDate()
+                    energy = 100
+>>>>>>> 4c7bc3912b9b0aa318c9d116fbf3b8dd1aedeb39
             
         case 'i':
             events.listInventory()
