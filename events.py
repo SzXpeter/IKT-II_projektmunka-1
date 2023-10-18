@@ -62,6 +62,7 @@ def removeInventory(item):
     print(f'{item} sikeresen eltávolítva az Inventorydból.')
 
 def isEnergyLow():
+    global energy, money
     if energy <= 0:
         energy = 50
         money -= money*0.15
