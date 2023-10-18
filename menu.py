@@ -42,3 +42,15 @@ def map():
 
         v = input("\n\nVálasszon: ")
     return v
+
+def market():
+    os.system("cls")
+    header()
+    while v != '1' and v != 'v' and v != 'e' and v != 'i':
+        os.system("cls")
+        header()
+        print("1\t Térkép")
+        print("v\t Magok vétele")
+        print("e\t Termény eladása")
+        print("i\t Inventory")
+        v = input("Választás: ")
