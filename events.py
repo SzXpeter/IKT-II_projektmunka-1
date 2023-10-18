@@ -3,12 +3,15 @@ import time
 year = 2018
 month = 0
 money = 1000
-pos = 'v'
+pos = 'h'
 date = ""
 energy = 0
 sus = 0
+<<<<<<< HEAD
 inventory = []
 
+=======
+>>>>>>> 9e5dcc9b3dcd0ce608714a9841b7d3ebd6df5ea6
 def updateDate():
     global year, month, date
     month += 6
