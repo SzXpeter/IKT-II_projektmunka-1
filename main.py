@@ -10,15 +10,10 @@ while events.money > 0:
                 case '1': 
                     menu.map() 
 
-<<<<<<< HEAD
         case 'a':
             events.updateDate()
+            energy = 100
             
         case 'i':
             events.listInventory()
-=======
-                case 'a':
-                    events.updateDate()
-                    energy = 100
             
->>>>>>> 9e5dcc9b3dcd0ce608714a9841b7d3ebd6df5ea6
