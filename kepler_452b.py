@@ -1,9 +1,10 @@
 import variables
 from variables import sPrint
 import os
+from random import randint
 
-# 0: water sample top, 1: sample sea bottom, 2: sea life, 3: abandoned house material, 4: kitchen's technology, 5: living room furniture, 6: living room tech, 7: explosion hole, 8: shadow
-kepler_checked = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+# 0: water sample top, 1: sample sea bottom, 2: sea life, 3: abandoned house material, 4: kitchen's technology, 5: living room furniture, 6: living room tech, 7: explosion hole, 8: explosion hole measurement, 9: search remains, 10: shadow
+kepler_checked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 kepler_note = ''
 
 def kepler_452b():
@@ -142,19 +143,47 @@ def kepler_452b():
                             while choice6 != '0':
                                 choice6 = city4_innerCity()
 
-                            match choice6:
-                                case '1':
-                                    if kepler_checked[7] == 0:
+                                match choice6:
+                                    case '1':
                                         cls()
-                                        sPrint("You're scanning for sea life.")
-                                        sPrint("The scan results are showing microorganisms.")
+                                        sPrint("You've found an explosion hole.")
                                         kepler_checked[7] = 1
-                                        kepler_note += 'in the sea there is life in the form of microorganisms; '
+                                        kepler_note += 'an explosion hole found in the city; '
                                         input("\ncontinue <ENTER>")
-                                    else:
-                                        cls()
-                                        print("You've already did a sea life scan.")
-                                        input("\ncontinue <ENTER>")
+
+                                        choice7 = ''
+                                        while choice7 != '0':
+                                            choice7 = city5_innerCity()
+
+                                            match choice7:
+                                                case '1':
+                                                    if kepler_checked[8] == 0:
+                                                        cls()
+                                                        sPrint("You're measuring the explosion hole.")
+                                                        sPrint("The explosion hole's depth: 15 meters")
+                                                        sPrint("The explosion hole's radius: 200 meters")
+                                                        sPrint("The explosion type: ATOMIC BOMB", 70)
+                                                        kepler_checked[8] = 1
+                                                        kepler_note += 'the explosion hole depth: 15 meters, radius: 200 meters, it was an atomic bomb; '
+                                                        input("\ncontinue <ENTER>")
+                                                    else:
+                                                        cls()
+                                                        print("You've already measured the explosion hole.")
+                                                        input("\ncontinue <ENTER>")
+                                                case '2':
+                                                    if kepler_checked[9] == 0:
+                                                        cls()
+                                                        sPrint("You're searching for survivors.")
+                                                        sPrint("Since this was an atomic bomb, the probability is very low.")
+                                                        percentageSurvivors = randint(0,100)
+                                                        if percentageSurvivors > 90:
+                                                            sPrint("You've found some highly injured, no signs of human being.")
+                                                            kepler_note += 'you have found some highly injured being, probably aliens; '
+                                                        else:
+                                                            sPrint("You've found nothing.")
+                                                            kepler_note += 'no signs of survivors; '
+                                                        input("\ncontinue <ENTER>")
+
                                                     
 def seaOrCityMenu():
     cls()
@@ -226,6 +255,16 @@ def city4_innerCity():
     print("2 - Go to the other side of the city")
     if kepler_checked[7] == 1:
         print("3 - Investigate the shadow on the wall")
+
+    return(input('Please choose: '))
+
+def city5_innerCity():
+    cls()
+    sPrint("You are at the explosion hole.\n")
+
+    print('0 - Go back')
+    print('1 - Measure the hole')
+    print("2 - Search for remain lifes")
 
     return(input('Please choose: '))
 
