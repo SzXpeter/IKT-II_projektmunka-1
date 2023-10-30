@@ -183,6 +183,23 @@ def kepler_452b():
                                                             sPrint("You've found nothing.")
                                                             kepler_note += 'no signs of survivors; '
                                                         input("\ncontinue <ENTER>")
+                                            
+                                cls()
+                                choice8 = ''
+                                while choice8 != '0':
+                                    choice8 = city6_innerCityShadow()
+
+                                    match choice8:
+                                        case '1':
+                                            cls()
+                                            sPrint("As you go closer to the wall some Aliens running away.")
+                                            kepler_note += 'there is a big chance of aliens are still lives here; '
+                                            input("\ncontinue <ENTER>")
+                                        case '2':
+                                            cls()
+                                            sPrint("As you turned back an Alien attacked you.")
+                                            kepler_note += 'there is still aliens alive, and they could be agressive; '
+                                            input("\ncontinue <ENTER>")
 
                                                     
 def seaOrCityMenu():
@@ -265,6 +282,15 @@ def city5_innerCity():
     print('0 - Go back')
     print('1 - Measure the hole')
     print("2 - Search for remain lifes")
+
+    return(input('Please choose: '))
+
+def city6_innerCityShadow():
+    cls()
+    sPrint("You see a strange shadow on the wall infront of you.")
+
+    print('1 - Go see the shadow')
+    print("2 - Move on")
 
     return(input('Please choose: '))
 
