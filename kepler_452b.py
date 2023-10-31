@@ -177,5 +177,3 @@ def city3_livingRoom():
 
 def cls():
     os.system('cls')
-
-kepler_452b()
