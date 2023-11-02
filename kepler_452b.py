@@ -332,5 +332,3 @@ def city8_highBuilding():
 
 def cls():
     os.system('cls')
-
-kepler_452b()
