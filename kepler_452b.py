@@ -183,25 +183,43 @@ def kepler_452b():
                                                             sPrint("You've found nothing.")
                                                             kepler_note += 'no signs of survivors; '
                                                         input("\ncontinue <ENTER>")
-                                            
-                                cls()
-                                choice8 = ''
-                                while choice8 != '0':
-                                    choice8 = city6_innerCityShadow()
+                                    case '2':
+                                        choice9 = ''
+                                        while choice9 != '0':
+                                            choice9 = city7_otherSide()
 
-                                    match choice8:
-                                        case '1':
-                                            cls()
-                                            sPrint("As you go closer to the wall some Aliens running away.")
-                                            kepler_note += 'there is a big chance of aliens are still lives here; '
-                                            input("\ncontinue <ENTER>")
-                                        case '2':
-                                            cls()
-                                            sPrint("As you turned back an Alien attacked you.")
-                                            kepler_note += 'there is still aliens alive, and they could be agressive; '
-                                            input("\ncontinue <ENTER>")
+                                            match choice9:
+                                                case '1':
+                                                    choice10 = ''
+                                                    while choice10 != '0':
+                                                        choice10 = city8_highBuilding()
 
+                                                    match choice10:
+                                                        case '1':
+                                                            sPrint("You are going down to the basement.")
+                                                            sPrint("You hear some weird noise, and you see some shadows moving to the opposite direction.")
+                                                            sPrint("When you got down to the basement, everything disappeared, you found nothing.")
+                                                            kepler_note += 'in a high building basement found nothing; '
+                                                            input("\ncontinue <ENTER>")
                                                     
+                                                    
+                                if kepler_checked[7] == 1:
+                                    cls()
+                                    choice8 = ''
+                                    while choice8 != '0':
+                                        choice8 = city6_innerCityShadow()
+
+                                        match choice8:
+                                            case '1':
+                                                cls()
+                                                sPrint("As you go closer to the wall some Aliens running away.")
+                                                kepler_note += 'there is a big chance of aliens are still lives here; '
+                                                input("\ncontinue <ENTER>")
+                                            case '2':
+                                                cls()
+                                                sPrint("As you turned back an Alien attacked you.")
+                                                kepler_note += 'there is still aliens alive, and they could be agressive; '
+                                                input("\ncontinue <ENTER>")     
 def seaOrCityMenu():
     cls()
     sPrint("You succesfully landed at the Kepler-452b landing site.\n")
@@ -270,8 +288,6 @@ def city4_innerCity():
     print('0 - Go back to the outer city')
     print('1 - Examine a explosion hole')
     print("2 - Go to the other side of the city")
-    if kepler_checked[7] == 1:
-        print("3 - Investigate the shadow on the wall")
 
     return(input('Please choose: '))
 
@@ -291,6 +307,26 @@ def city6_innerCityShadow():
 
     print('1 - Go see the shadow')
     print("2 - Move on")
+
+    return(input('Please choose: '))
+
+def city7_otherSide():
+    cls()
+    sPrint("You are at the other side of the city.")
+
+    print('0 - Go back')
+    print('1 - Investigate the high building')
+    print("2 - Investigate the flat building")
+
+    return(input('Please choose: '))
+
+def city8_highBuilding():
+    cls()
+    sPrint("You are in the high building.")
+
+    print('0 - Go back')
+    print('1 - Check basement')
+    print("2 - Check 1st floor")
 
     return(input('Please choose: '))
 
