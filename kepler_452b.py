@@ -3,8 +3,10 @@ from variables import sPrint
 import os
 from random import randint
 
-# 0: water sample top, 1: sample sea bottom, 2: sea life, 3: abandoned house material, 4: kitchen's technology, 5: living room furniture, 6: living room tech, 7: explosion hole, 8: explosion hole measurement, 9: search remains, 10: shadow
-kepler_checked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+# 0: water sample top, 1: sample sea bottom, 2: sea life, 3: abandoned house material, 4: kitchen's technology, 5: living room furniture, 6: living room tech, 7: explosion hole
+# 8: explosion hole measurement, 9: search remains, 10: shadow
+# 11: high b. basement, 12:high b.r1bath,13: high b.r1liv,14:high b.r2
+kepler_checked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 kepler_note = ''
 
 def kepler_452b():
@@ -182,8 +184,13 @@ def kepler_452b():
                                                         else:
                                                             sPrint("You've found nothing.")
                                                             kepler_note += 'no signs of survivors; '
+                                                        kepler_checked[9] = 1
+                                                        input("\ncontinue <ENTER>")
+                                                    else:
+                                                        sPrint("You've already checked for survivors.")
                                                         input("\ncontinue <ENTER>")
                                     case '2':
+                                        cls()
                                         choice9 = ''
                                         while choice9 != '0':
                                             choice9 = city7_otherSide()
@@ -196,28 +203,94 @@ def kepler_452b():
 
                                                     match choice10:
                                                         case '1':
-                                                            sPrint("You are going down to the basement.")
-                                                            sPrint("You hear some weird noise, and you see some shadows moving to the opposite direction.")
-                                                            sPrint("When you got down to the basement, everything disappeared, you found nothing.")
-                                                            kepler_note += 'in a high building basement found nothing; '
-                                                            input("\ncontinue <ENTER>")
-                                                    
-                                                    
-                                if kepler_checked[7] == 1:
+                                                            cls()
+                                                            if kepler_checked[11] == 0:
+                                                                sPrint("You are going down to the basement.")
+                                                                sPrint("You hear some weird noise, and you see some shadows moving to the opposite direction.")
+                                                                sPrint("When you got down to the basement, everything disappeared, you found nothing.")
+                                                                kepler_checked[11] = 1
+                                                                kepler_note += 'in a high building basement found nothing; '
+                                                                input("\ncontinue <ENTER>")
+                                                            else:
+                                                                sPrint("You've already checked the basement.")
+                                                                input("\ncontinue <ENTER>")
+                                                        case '2':
+                                                            cls()
+                                                            choice11 = ''
+                                                            while choice11 != '0':
+                                                                choice11 = city9_highFloor()
+
+                                                                match choice11:
+                                                                    case '1':
+                                                                        cls()
+                                                                        choice12 = ''
+                                                                        while choice12 != '0':
+                                                                            choice12 = city10_highRoom1()
+
+                                                                            match choice12:
+                                                                                case '1':
+                                                                                    cls()
+                                                                                    if kepler_checked[12] == 0:
+                                                                                        sPrint("You found a lot of acid, and a dead Alien.")
+                                                                                        kepler_note += 'found acid, and dead Alien; '
+                                                                                        kepler_checked[12] = 1
+                                                                                        input("\ncontinue <ENTER>")
+                                                                                    else:
+                                                                                        sPrint("You've already checked the bathroom.")
+                                                                                        input("\ncontinue <ENTER>")
+                                                                                case '2':
+                                                                                    cls()
+                                                                                    if kepler_checked[13] == 0:
+                                                                                        sPrint("There is a lot of blood on the bed.")
+                                                                                        kepler_note += 'blood on a bed; '
+                                                                                        kepler_checked[13] = 1
+                                                                                        input("\ncontinue <ENTER>")
+                                                                                    else:
+                                                                                        sPrint("You've already checked the living room.")
+                                                                                        input("\ncontinue <ENTER>")
+                                                                    case '2':
+                                                                        cls()
+                                                                        if kepler_checked[14] == 0:
+                                                                            sPrint("In the second romm the bathroom's door was jammed.")
+                                                                            sPrint("For your own safety you left the room.")
+                                                                            kepler_checked[14] = 1
+                                                                            input("\ncontinue <ENTER>")
+                                                                        else:
+                                                                            sPrint("You've already checked this room.")
+                                                case '2':
+                                                    cls()
+                                                    choice13 = ''
+                                                    while choice13 != '0':
+                                                        choice13 = city11_flatRooms()
+
+                                                        match choice13:
+                                                            case '1':
+                                                                cls()
+                                                                sPrint("You checked the bed and a desk.")
+                                                                sPrint("You've found nothing interesting.")
+                                                                input("\ncontinue <ENTER>")
+                                                            case '2':
+                                                                cls()
+                                                                sPrint("This is an empty room, with a lot of scrap.")
+                                                                input("\ncontinue <ENTER>")
+                                                                
+                                if kepler_checked[7] == 1 and kepler_checked[10] == 0:
                                     cls()
                                     choice8 = ''
-                                    while choice8 != '0':
+                                    if choice8 != '1' or choice8 != '2':
                                         choice8 = city6_innerCityShadow()
 
                                         match choice8:
                                             case '1':
                                                 cls()
                                                 sPrint("As you go closer to the wall some Aliens running away.")
+                                                kepler_checked[10] = 1
                                                 kepler_note += 'there is a big chance of aliens are still lives here; '
                                                 input("\ncontinue <ENTER>")
                                             case '2':
                                                 cls()
                                                 sPrint("As you turned back an Alien attacked you.")
+                                                kepler_checked[10] = 1
                                                 kepler_note += 'there is still aliens alive, and they could be agressive; '
                                                 input("\ncontinue <ENTER>")     
 def seaOrCityMenu():
@@ -305,7 +378,7 @@ def city6_innerCityShadow():
     cls()
     sPrint("You see a strange shadow on the wall infront of you.")
 
-    print('1 - Go see the shadow')
+    print('1 - Go and examine the shadow')
     print("2 - Move on")
 
     return(input('Please choose: '))
@@ -327,6 +400,36 @@ def city8_highBuilding():
     print('0 - Go back')
     print('1 - Check basement')
     print("2 - Check 1st floor")
+
+    return(input('Please choose: '))
+
+def city9_highFloor():
+    cls()
+    sPrint("You are at the high building's first floor.")
+
+    print('0 - Go back')
+    print('1 - Check Room 1')
+    print("2 - Check Room 2")
+
+    return(input('Please choose: '))
+
+def city10_highRoom1():
+    cls()
+    sPrint("You are in Room 1.")
+
+    print('0 - Go back')
+    print('1 - Check bathroom')
+    print("2 - Examine the living room")
+
+    return(input('Please choose: '))
+
+def city11_flatRooms():
+    cls()
+    sPrint("You are in the flat building.")
+
+    print('0 - Go back')
+    print('1 - Check Room 1')
+    print('2 - Check Room 2')
 
     return(input('Please choose: '))
 
