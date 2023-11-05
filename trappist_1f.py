@@ -22,14 +22,20 @@ def trappistAlienBar():
     print(f"Alien examination = {x}%")
 
 def trappist_1f():
+    global trappist1fLand, trappist1fAliens
     os.system("cls")
     sPrint("You succesfully landed on Trappist-1f.")
     input("continue <ENTER>")
-    sea_shore()
+    if sea_shore() == "dead":
+        trappist1fLand = [0, 0, 0, 0, 0]
+        trappist1fAliens = [0, 0, 0]
+        sPrint("You died.")
+        sPrint("You lose all your progress on this planet and return to orbit.")
+        input("continue <ENTER>")
+        return 0
     
 
 def sea_shore():
-    variables.statUpdate(trappistRad)
     Exit = False
     while Exit == False:
         v = ''
@@ -65,14 +71,20 @@ def sea_shore():
             case '2':
                 if flat_fields() == "dead":
                     return 0
+                if variables.statUpdate(trappistRad) == "dead":
+                    return "dead"
             case '3':
-                bottom_mountain()
+                if bottom_mountain() == "dead":
+                    return "dead"
+                if variables.statUpdate(trappistRad) == "dead":
+                    return "dead"
             case '0':
                 variables.restock()
 
 
 def flat_fields():
-    variables.statUpdate(trappistRad)
+    if variables.statUpdate(trappistRad) == "dead":
+        return "dead"
     Exit = False
     while Exit == False:
         v = ''
@@ -105,9 +117,12 @@ def flat_fields():
                 if v == 'y':
                     if starting_water() == "dead":
                         return "dead"
+                    if variables.statUpdate(trappistRad) == "dead":
+                        return "dead"
 
 def starting_water():
-    variables.statUpdate(trappistRad)
+    if variables.statUpdate(trappistRad) == "dead":
+        return "dead"
     Exit = False
     while Exit == False:
         v = ''
@@ -136,9 +151,12 @@ def starting_water():
             case '3':
                 if deep_waters() == "dead":
                     return "dead"
+                if variables.statUpdate(trappistRad) == "dead":
+                    return "dead"
 
 def deep_waters():
-    variables.statUpdate(trappistRad)
+    if variables.statUpdate(trappistRad) == "dead":
+        return "dead"
     Exit = False
     while Exit == False:
         v = ''
@@ -163,9 +181,12 @@ def deep_waters():
             case '2':
                 if far_away_waters() == "dead":
                     return "dead"
+                if variables.statUpdate(trappistRad) == "dead":
+                    return "dead"
 
 def far_away_waters():
-    variables.statUpdate(trappistRad)
+    if variables.statUpdate(trappistRad) == "dead":
+        return "dead"
     Exit = False
     while Exit == False:
         v = ''
@@ -202,6 +223,8 @@ def swim_away():
     sPrint("As you take the photo the aliens start swimming straight at you.")
     sPrint("You need to get away fast.")
     sPrint("To do that you need to spam <ENTER>.")
+    time.sleep(2)
+    print("GO")
     startTime = time.time()
     score = 0
     while time.time() - startTime < 5:
@@ -213,14 +236,11 @@ def swim_away():
     else:
         sPrint("You got caught.")
         sPrint("The aliens shocked you to death.")
-        sPrint("You lose all progress on this planet and you return to outer space.")
-        input("continue<ENTER>")
-        trappist1fLand = [0, 0, 0, 0, 0]
-        trappist1fAliens = [0, 0, 0]
         return "dead"
 
 def bottom_mountain():
-    variables.statUpdate(trappistRad)
+    if variables.statUpdate(trappistRad) == "dead":
+        return "dead"
     Exit = False
     while Exit == False:
         v = ''
@@ -244,10 +264,14 @@ def bottom_mountain():
                 sPrint("You tried to break the ice but it seems to be too thick.")
                 input("continue<ENTER>")
             case '3':
-                top_mountain()
+                if top_mountain() == "dead":
+                    return "dead"
+                if variables.statUpdate(trappistRad) == "dead":
+                    return "dead"
 
 def top_mountain():
-    variables.statUpdate(trappistRad)
+    if variables.statUpdate(trappistRad) == "dead":
+        return "dead"
     Exit = False
     while Exit == False:
         v = ''

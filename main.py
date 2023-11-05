@@ -1,5 +1,5 @@
 from kepler_452b import *
-from lhs_1140b import *
+from lhs_1140b import lhs_1140b
 from proxima_centauri_b import *
 from trappist_1f import trappist_1f
 import variables, os
@@ -20,6 +20,10 @@ def main():
             print("\t4. Go to LHS_1140b")
             print("\texit. Exit game")
             v = input("choice: ")
+
+        variables.hp = 100
+        variables.rad = 0
+        variables.O2 = 100
 
         match v:
             case '1':

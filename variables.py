@@ -25,20 +25,19 @@ def restock():
 
 def statUpdate(radUpdate, O2Update = 5):
     global rad, O2, hp
+    if hp <= 0:
+        return "dead"
     if O2 <= 0:
         O2 = 0
         hp -= 10
     else:
         O2 -= O2Update
-
     if rad >= 100:
         rad = 100
         hp -= 10
     else:
         rad += radUpdate
 
-    if hp <= 0:
-        return "dead"
 
 rad = 0
 O2 = 100
