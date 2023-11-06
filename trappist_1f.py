@@ -27,6 +27,8 @@ def trappist_1f():
     sPrint("You succesfully landed on Trappist-1f.")
     input("continue <ENTER>")
     if sea_shore() == "dead":
+        os.system("cls")
+        userInterface()
         trappist1fLand = [0, 0, 0, 0, 0]
         trappist1fAliens = [0, 0, 0]
         sPrint("You died.")
