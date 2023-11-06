@@ -11,5 +11,11 @@ body {
 }
 
 .planetImg {
-    
+    transform: rotate(0deg);
+    transition: 0.3s;
+}
+
+.planetImg:hover {
+    transform: rotate(45deg);
+    transition: 0.3s;
 }
