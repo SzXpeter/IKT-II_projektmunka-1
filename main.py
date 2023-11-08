@@ -1,5 +1,4 @@
 from kepler_452b import *
-from lhs_1140b import lhs_1140b
 from proxima_centauri_b import *
 from trappist_1f import trappist_1f
 import variables, os

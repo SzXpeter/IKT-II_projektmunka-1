@@ -73,10 +73,40 @@ def proxima_centauri_b():
                         case '3':
                             cls()
                             sPrint("As you digged deeper, you felt wind coming out from the wall.")
+                            input("\ncontinue <ENTER>")
 
+                            choice4 = ''
+                            while choice4 != '0':
+                                choice4 = mountainWind()
+
+                                match choice4:
+                                    case '1':
+                                        cls()
+                                        sPrint("As you got closer you've started to see cracks in the wall.")
+                                        sPrint("You decided to break down the wall.")
+                                        sPrint("You broke through and saw skeletons.")
+                                        input("\ncontinue <ENTER>")
+                                    case '2':
+                                        cls()
+                                        sPrint("As you turn your back you can see a small stream of liquid.")
+                                        sPrint("You digged deeper towards the leak.")
+                                        sPrint("You found lava.")
+                                        input("\ncontinue <ENTER>")
+
+                                        choice5 = ''
+                                        while choice5 != '0':
+                                            choice5 = mountainLava()
+
+                                            match choice5:
+                                                case '1':
+                                                    cls()
+                                                    sPrint("As you got closer to the lava, you burned yourself.")
+                                                    sPrint("You panicked, and your oxygen decreasing rapidly.")
+                                                    input("\ncontinue <ENTER>")
 
 
 def mountainOrField():
+    cls()
     sPrint("You succesfully landed at the Proxima Centauri b.\n")
 
     print('exit - Exit from this planet')
@@ -86,19 +116,42 @@ def mountainOrField():
     return(input('Please choose a location: '))
 
 def fieldChoice():
+    cls()
     sPrint("You arrived at the open field.\n")
 
+    print('0 - Go back')
     print('1 - Collect ground sample')
     print('2 - Examine the air quality')
 
     return(input('Please choose: '))
 
 def mountainChoice():
+    cls()
     sPrint("You've caved the mountains's surface.\n")
 
+    print('0 - Go back')
     print('1 - Collect sample from the wall')
     print('2 - Examine drawings on the wall')
     print('3 - Dig deeper')
+
+    return(input('Please choose: '))
+
+def mountainWind():
+    cls()
+    sPrint("Do you want to examine it?\n")
+
+    print('0 - Go back')
+    print('1 - Yes')
+    print('2 - Not yet')
+
+    return(input('Please choose: '))
+
+def mountainLava():
+    cls()
+    sPrint("Do you want to examine it?\n")
+
+    print('0 - No, go back')
+    print('1 - Yes')
 
     return(input('Please choose: '))
 
