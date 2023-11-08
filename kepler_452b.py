@@ -13,7 +13,7 @@ def kepler_452b():
     global kepler_note
 
     choice1 = ''
-    while choice1 !='0':
+    while choice1 !='exit':
         choice1 = seaOrCityMenu()
 
         match choice1:
@@ -297,6 +297,7 @@ def seaOrCityMenu():
     cls()
     sPrint("You succesfully landed at the Kepler-452b landing site.\n")
 
+    print('exit - Exit from this planet')
     print('1 - Go to the sea shore')
     print('2 - Go into the city')
     print('n - Notes from the planet')
