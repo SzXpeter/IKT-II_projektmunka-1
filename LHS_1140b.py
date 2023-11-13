@@ -224,30 +224,56 @@ def inner_swamp():
         while v != '1' and v != '2' and v != '3' and v != '0':
             os.system("cls")
             userInterface()
-            sPrint("You're in inner swamp.")
-            print("\n\t1. Scan the area")
-            print("\t2. Collect plant sample")
-            print("\t3. Go deeper into the swamp")
-            print("\t0. Go to the sea shore")
+            sPrint("You're in inner swamp. And you come around a lake.")
+            print("\n\t1. Go around it.")
+            print("\t2. Go across using the rocks")
+            print("\t3. Go across using the logs")
+            print("\t0. Go back to the outer swamps")
             v = input("choice: ")
         match v :
             case '0':
                 return 0
             case '1':
-                LHSLand[2] = 1
-                LHSLandBar()
-                sPrint("The swamp is dense with trees and the gound is loose.")
-                input("continue<ENTER>")
+                sPrint("You go around the lake safely and quickly.")
+                sPrint("You look back and see two eyes looking at you from between the logs.")
+                input("continue <ENTER>")
+                amphitere()
             case '2':
-                LHSLand[3] = 1
-                LHSLandBar()
-                sPrint("These plants are similar to earths.")
-                input("continue<ENTER>")
+                if math_rocks == "dead":
+                    return "dead"
             case '3':
-                if inner_swamp() == "dead":
+                sPrint("As you jump across the lake log to log, one of them moves out of you and rips you to pieces.")
+                return "dead"
+            
+def math_rocks():
+    pass
+
+def amphitere():
+    Exit = False
+    while Exit == False:
+        v = ''
+        while v != '1' and v != '2' and v != '3' and v != '0':
+            os.system("cls")
+            userInterface()
+            sPrint("You're in inner swamp. And you are looking at a beast.")
+            print("\n\t1. Go around it.")
+            print("\t2. Go across using the rocks")
+            print("\t3. Go across using the logs")
+            print("\t0. Go back to the outer swamps")
+            v = input("choice: ")
+        match v :
+            case '0':
+                return 0
+            case '1':
+                sPrint("You go around the lake safely and quickly.")
+                sPrint("You look back and see two eyes looking at you from between the logs.")
+                amphitere()
+            case '2':
+                if math_rocks == "dead":
                     return "dead"
-                if variables.statUpdate(LHSRad) == "dead":
-                    return "dead"
+            case '3':
+                sPrint("As you jump across the lake log to log, one of them moves out of you and rips you to pieces.")
+                return "dead"
 
 def bottom_mountain():
     pass

@@ -36,6 +36,9 @@ def statUpdate(radUpdate, O2Update = 5):
     else:
         rad += radUpdate
     if hp <= 0:
+        hp = 100
+        O2 = 100
+        rad = 0
         return "dead"
 
 

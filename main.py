@@ -1,6 +1,7 @@
 from kepler_452b import *
 from proxima_centauri_b import *
 from trappist_1f import trappist_1f
+from LHS_1140b import lhs_1140b
 import variables, os
 
 variables.sPrint("You were sent here from earth to collect information about these planets.\nYou need to examine the life forms that live or lived there and the landscape.")
