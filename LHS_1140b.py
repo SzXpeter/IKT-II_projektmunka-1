@@ -240,7 +240,9 @@ def inner_swamp():
                 if amphitere() == "dead":
                     return "dead"
             case '2':
-                if math_rocks == "dead":
+                if math_rocks() == "dead":
+                    return "dead"
+                if amphitere() == "dead":
                     return "dead"
                 else:
                     return 0
@@ -249,7 +251,19 @@ def inner_swamp():
                 return "dead"
             
 def math_rocks():
-    pass
+    math_questions = ["log2(64) * 6 = ", "9^150/300", "x^2 + 10x = -25, x=?", "x√256 = 4, x = ?", "2 ^ x = 32 768, x = ?"]
+    math_answers = ["36", "3", "-5", "4", "15"]
+    os.system("cls")
+    sPrint("What are the answers: ")
+    for i in range(5):
+        print(math_questions[i])
+        if input() == math_answers[i]:
+            print("Correct!")
+        else:
+            sPrint("You slipped and fell into the water and you broke your neck.")
+            return "dead"
+    sPrint("You successfully got across the water.")
+    input("continue<ENTER>")
 
 def amphitere():
     Exit = False
@@ -272,6 +286,7 @@ def amphitere():
             case '2':
                 sPrint("It looks like some type of amphitere.")
                 sPrint("It starts sliding towards you.")
+                input("continue<ENTER>")
                 v = ''
                 while v != '1' and v != '2' and v != '3':
                     os.system("cls")
