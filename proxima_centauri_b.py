@@ -6,6 +6,13 @@ from random import randint
 # 0: fieldGroundSample, 1: fieldAirQuality, 2: mountainWallSample, 3: mountainDrawings
 proxima_checked = [0, 0, 0, 0]
 
+def KeplerPlanetBar():
+    x = 0
+    for i in range(len(proxima_checked)):
+        if proxima_checked[i] == 1:
+            x += 25
+    print(f"Planet examination = {x:.2f}%")
+
 def proxima_centauri_b():
     cls()
     choice1 = ''
@@ -27,6 +34,7 @@ def proxima_centauri_b():
                                 sPrint("After you started it the results are came:")
                                 sPrint("RADIOACTIVE MATERIAL.")
                                 proxima_checked[0] = 1
+                                KeplerPlanetBar()
                                 input("\ncontinue <ENTER>")
                             else:
                                 sPrint("You've already did a ground sample check.")
@@ -37,6 +45,7 @@ def proxima_centauri_b():
                                 sPrint("You've started the air quality tester.")
                                 sPrint("Result: THE AIR IS NOT RADIOACTIVE.")
                                 proxima_checked[1] = 1
+                                KeplerPlanetBar()
                                 input("\ncontinue <ENTER>")
                             else:
                                 sPrint("You've already did a air quality check.")
@@ -54,6 +63,7 @@ def proxima_centauri_b():
                                 sPrint("You've collected some sample from the wall.")
                                 sPrint("You've putted it in a evidence bag.")
                                 proxima_checked[2] = 1
+                                KeplerPlanetBar()
                                 input("\ncontinue <ENTER>")
                             else:
                                 sPrint("You've already collected sample from the wall.")
@@ -66,6 +76,7 @@ def proxima_centauri_b():
                                 sPrint("You uploaded it to the evidence searching app.")
                                 sPrint("There are no matchings.")
                                 proxima_checked[3] = 1
+                                KeplerPlanetBar()
                                 input("\ncontinue <ENTER>")
                             else:
                                 sPrint("You've already did a air quality check.")

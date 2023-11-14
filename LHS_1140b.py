@@ -2,7 +2,7 @@ import variables, os, time
 from variables import sPrint, userInterface
 #ocean sample, ocean bottom sample, swamp plant sample, swamp scan
 LHSLand = [0, 0, 0, 0]
-#sea serpent photo, amphitere scan, hydra scan, hydra photo, hydra egg scan, dragon egg scan, dragon egg photo, dragon scan, dragon photo
+#sea serpent photo, amphitere scan, hydra scan, hydra photo, hydra egg scan, hydra egg photo, dragon egg scan, dragon egg photo, dragon scan, dragon photo
 LHSAliens = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 LHSRad = 5
@@ -11,15 +11,15 @@ def LHSLandBar():
     x = 0
     for i in range(len(LHSLand)):
         if LHSLand[i] == 1:
-            x += 20
-    print(f"Land examination = {x}%")
+            x += 25
+    print(f"Land examination = {x:.2f}%")
 
 def LHSAlienBar():
     x = 0
     for i in range(len(LHSAliens)):
         if LHSAliens[i] == 1:
-            x += 50
-    print(f"Alien examination = {x}%")
+            x += 10
+    print(f"Alien examination = {x:.2f}%")
 
 def lhs_1140b():
     global LHSLand, LHSAliens
@@ -28,7 +28,7 @@ def lhs_1140b():
     input("continue <ENTER>")
     if sea_shore() == "dead":
         LHSLand = [0, 0, 0, 0]
-        LHSAliens = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        LHSAliens = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         sPrint("You died.")
         sPrint("You lose all your progress on this planet and return to orbit.")
         input("continue <ENTER>")
@@ -75,6 +75,7 @@ def sea_shore():
                 variables.restock()
 
 def shallow_water():
+    global LHSLand
     if variables.statUpdate(LHSRad) == "dead":
         return "dead"
     Exit = False
@@ -182,6 +183,7 @@ def swim_away():
         return "dead"
 
 def outer_swamp():
+    global LHSLand
     if variables.statUpdate(LHSRad) == "dead":
         return "dead"
     Exit = False
@@ -245,6 +247,8 @@ def inner_swamp():
                 if amphitere() == "dead":
                     return "dead"
                 else:
+                    if variables.statUpdate(LHSRad) == "dead":
+                        return "dead"
                     return 0
             case '3':
                 sPrint("As you jump across the lake log to log, one of them moves out of you and rips you to pieces.")
@@ -266,6 +270,7 @@ def math_rocks():
     input("continue<ENTER>")
 
 def amphitere():
+    global LHSAliens
     Exit = False
     while Exit == False:
         v = ''
@@ -285,6 +290,8 @@ def amphitere():
                 return "dead"
             case '2':
                 sPrint("It looks like some type of amphitere.")
+                LHSAliens[1] = 1
+                LHSAlienBar()
                 sPrint("It starts sliding towards you.")
                 input("continue<ENTER>")
                 v = ''
@@ -312,4 +319,229 @@ def amphitere():
                             return 0
 
 def bottom_mountain():
-    pass
+    if variables.statUpdate(LHSRad) == "dead":
+        return "dead"
+    Exit = False
+    while Exit == False:
+        v = ''
+        while v != '1' and v != '2' and v != '0':
+            os.system("cls")
+            userInterface()
+            sPrint("You're at the bottom of the mountain.")
+            print("\n\t1. Climb up the mountain.")
+            print("\t2. Go around the mountain")
+            print("\t0. Go to the sea shore")
+            v = input("choice: ")
+        match v :
+            case '0':
+                return 0
+            case '1':
+                sPrint("As you go higher you notice something fly by.")
+                input("continue<ENTER>")
+                if upper_mountain() == "dead":
+                    return "dead"
+                elif upper_mountain() == "dragon":
+                    return 0
+                if variables.statUpdate(LHSRad) == "dead":
+                    return "dead"
+            case '2':
+                if cave_entrance() == "dead":
+                    return "dead"
+                if variables.statUpdate(LHSRad) == "dead":
+                    return "dead"
+                
+def upper_mountain():
+    global LHSAliens
+    if variables.statUpdate(LHSRad) == "dead":
+        return "dead"
+    Exit = False
+    while Exit == False:
+        v = ''
+        while v != '1' and v != '2' and v != '3' and v != '0':
+            os.system("cls")
+            userInterface()
+            sPrint("You're up the mountain. You see a nest.")
+            print("\n\t1. Take photo")
+            print("\t2. Scan it")
+            print("\t3. Go closer")
+            print("\t0. Climb down")
+            v = input("choice: ")
+        match v :
+            case '0':
+                return 0
+            case '1':
+                sPrint("You take a photo of the eggs.")
+                LHSAliens[7] = 1
+                LHSAlienBar()
+                input("continue<ENTER>")
+            case '2':
+                sPrint("You scan the eggs and see some smol creatures inside.")
+                LHSAliens[6] = 1
+                LHSAlienBar()
+                input("continue<ENTER>")
+            case '3':
+                sPrint("You go closer to the eggs and suddenly a dragon lands before you.")
+                input("continue<ENTER>")
+                if dragon() == "dead":
+                    return "dead"
+                
+def dragon():
+    global LHSAliens
+    if variables.statUpdate(LHSRad) == "dead":
+        return "dead"
+    Exit = False
+    while Exit == False:
+        v = ''
+        while v != '1' and v != '2':
+            os.system("cls")
+            userInterface()
+            sPrint("You're up the mountain face to face with a dragon.")
+            print("\n\t1. Stand still")
+            print("\t2. Run")
+            v = input("choice: ")
+        match v :
+            case '1':
+                sPrint("You stand still and the dragon slaps you off the mountain.")
+                return "dead"
+            case '2':
+                sPrint("You start running down the mountain the dragon chasing right behind you.")
+                while v != '1' and v != '2':
+                    print("\n\t1. Run into the woods")
+                    print("\t2. Run into the open fields")
+                    v = input("choice: ")
+                match v :
+                    case '0':
+                        return 0
+                    case '1':
+                        sPrint("You run into the woods.")
+                        sPrint("The dragon tries to dive for you but it gets stuck on the trees.")
+                        input("continue<ENTER>")
+                        while v != '1' and v != '2':
+                            os.system("cls")
+                            userInterface()
+                            sPrint("You're standing in front of the dragon.")
+                            print("\n\t1. Take photo")
+                            print("\t2. Scan it")
+                            print("\t0. Leave")
+                            v = input("choice: ")
+                        match v :
+                            case '0':
+                                return "dragon"
+                            case '1':
+                                sPrint("You take a photo of the dragon.")
+                                LHSAliens[9] = 1
+                                LHSAlienBar()
+                                input("continue<ENTER>")
+                            case '2':
+                                sPrint("You scan the dragon.")
+                                LHSAliens[8] = 1
+                                LHSAlienBar()
+                                input("continue<ENTER>")
+                    case '2':
+                        sPrint("You run into the open fields and the dragon torches you.")
+                        return "dead"
+                    
+def cave_entrance():
+    if variables.statUpdate(LHSRad) == "dead":
+        return "dead"
+    Exit = False
+    while Exit == False:
+        v = ''
+        while v != '1' and v != '0':
+            os.system("cls")
+            userInterface()
+            sPrint("You're at the bottom of the mountain. You found a cave.")
+            print("\n\t1. Go in")
+            print("\t0. Go back around")
+            v = input("choice: ")
+        match v :
+            case '0':
+                return 0
+            case '1':
+                cave()
+
+def cave():
+    if variables.statUpdate(LHSRad) == "dead":
+        return "dead"
+    Exit = False
+    while Exit == False:
+        v = ''
+        while v != '1' and v !='2' and v != '3' and v != '0':
+            os.system("cls")
+            userInterface()
+            sPrint("You're inside the cave.")
+            print("\n\t1. Go into chamber 1")
+            print("\n\t2. Go into chamber 2")
+            print("\n\t3. Go into chamber 3")
+            print("\t0. Go outside")
+            v = input("choice: ")
+        match v :
+            case '0':
+                return 0
+            case '1':
+                hydra()
+            case '2':
+                hydra_eggs()
+            case '3':
+                sPrint("You see a bunch of thorn flesh.")
+                input("continue<ENTER>")
+
+def hydra():
+    if variables.statUpdate(LHSRad) == "dead":
+        return "dead"
+    Exit = False
+    while Exit == False:
+        v = ''
+        while v != '1' and v !='2' and v != '3' and v != '0':
+            os.system("cls")
+            userInterface()
+            sPrint("You're inside the cave. You see some white spots in the dark.")
+            print("\n\t1. Do a scan")
+            print("\n\t2. Take photo")
+            print("\n\t3. Go closer")
+            print("\t0. Go back")
+            v = input("choice: ")
+        match v :
+            case '0':
+                return 0
+            case '1':
+                sPrint("The creature seems to be a hydra.")
+                LHSAliens[2] = 1
+                LHSAlienBar()
+                input("continue<ENTER>")
+            case '2':
+                sPrint("You take a photo and th thing twitches but doesn't wake up.")
+                LHSAliens[3] = 1
+                LHSAlienBar()
+                input("continue<ENTER>")
+            case '3':
+                sPrint("As you go closer the thing wakes up and thorns you to pieces.")
+                return "dead"
+            
+def hydra_eggs():
+    if variables.statUpdate(LHSRad) == "dead":
+        return "dead"
+    Exit = False
+    while Exit == False:
+        v = ''
+        while v != '1' and v !='2' and v != '0':
+            os.system("cls")
+            userInterface()
+            sPrint("You're inside the cave. You see eggs.")
+            print("\n\t1. Do a scan")
+            print("\n\t2. Take photo")
+            print("\t0. Go back")
+            v = input("choice: ")
+        match v :
+            case '0':
+                return 0
+            case '1':
+                sPrint("There are smol three-headed cretures inside them.")
+                LHSAliens[4] = 1
+                LHSAlienBar()
+                input("continue<ENTER>")
+            case '2':
+                sPrint("You take a photo of the eggs.")
+                LHSAliens[5] = 1
+                LHSAlienBar()
+                input("continue<ENTER>")

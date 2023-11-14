@@ -39,9 +39,11 @@ def statUpdate(radUpdate, O2Update = 5):
         hp = 100
         O2 = 100
         rad = 0
+        deaths += 1
         return "dead"
 
 
 rad = 0
 O2 = 100
 hp = 100
+deaths = 0

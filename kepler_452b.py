@@ -7,21 +7,30 @@ from random import randint
 # 8: explosion hole measurement, 9: search remains, 10: shadow
 # 11: high b. basement, 12:high b.r1bath,13: high b.r1liv,14:high b.r2
 kepler_checked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-kepler_note = ''
+
+def KeplerPlanetBar():
+    x = 0
+    for i in range(len(kepler_checked)):
+        if kepler_checked == [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]:
+            x = 100
+        elif kepler_checked[i] == 1:
+            x += 100/15
+    print(f"Planet examination = {x:.2f}%")
 
 def kepler_452b():
-    global kepler_note
+    if planet() == "dead":
+        kepler_checked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        sPrint("You died.")
+        sPrint("You lose all your progress on this planet and return to orbit.")
+        input("continue <ENTER>")
+        return 0
 
+def planet():
     choice1 = ''
     while choice1 !='exit':
         choice1 = seaOrCityMenu()
 
         match choice1:
-            case 'n':
-                cls()
-                print("The notes from this planet: \n")
-                sPrint(kepler_note, 80)
-                input("\ncontinue <ENTER>")
             case '1':
                 choice2 = ''
                 while choice2 != '0':
@@ -36,7 +45,7 @@ def kepler_452b():
                                 sPrint("You went for a fast check with your gadget.")
                                 sPrint("The sample results: THE WATER IS HIGHLY RADIOACTIVE", 25)
                                 kepler_checked[0] = 1
-                                kepler_note += 'The top of the sea water on this planet is highly radioactive; '
+                                KeplerPlanetBar()
                                 input("\ncontinue <ENTER>")
                                 
                             else:
@@ -55,7 +64,7 @@ def kepler_452b():
                                             sPrint("You collected some sand and rock from the bottom of the sea.")
                                             sPrint("These samples aren't radioactive.")
                                             kepler_checked[1] = 1
-                                            kepler_note += 'the sample from the bottom of the sea did not came back as radioactive; '
+                                            KeplerPlanetBar()
                                             input("\ncontinue <ENTER>")
                                         else:
                                             cls()
@@ -67,7 +76,7 @@ def kepler_452b():
                                             sPrint("You're scanning for sea life.")
                                             sPrint("The scan results are showing microorganisms.")
                                             kepler_checked[2] = 1
-                                            kepler_note += 'in the sea there is life in the form of microorganisms; '
+                                            KeplerPlanetBar()
                                             input("\ncontinue <ENTER>")
                                         else:
                                             cls()
@@ -92,7 +101,7 @@ def kepler_452b():
                                             sPrint("You put it in a vacuum technology examine system.")
                                             sPrint("The results: SOME ALIENS WERE HERE")
                                             kepler_checked[3] = 1
-                                            kepler_note += 'there are signs of aliens in the abandoned house at the outer city area; '
+                                            KeplerPlanetBar()
                                             input("\ncontinue <ENTER>")
                                         else:
                                             cls()
@@ -104,7 +113,7 @@ def kepler_452b():
                                             sPrint("You are trying to examine the kitchen's appliances.")
                                             sPrint("You found a sticker with the year of 1999")
                                             kepler_checked[4] = 1
-                                            kepler_note += 'found the sticker with the year 1999 on it; '
+                                            KeplerPlanetBar()
                                             input("\ncontinue <ENTER>")
                                         else:
                                             cls()
@@ -122,6 +131,7 @@ def kepler_452b():
                                                         sPrint("You are looking over all the furnitures left here.")
                                                         kepler_checked[5] = 1
                                                         sPrint("You didn't find anything.")
+                                                        KeplerPlanetBar()
                                                         input("\ncontinue <ENTER>")
                                                     else:
                                                         cls()
@@ -134,7 +144,7 @@ def kepler_452b():
                                                         sPrint("You found a telephone, an old light bulb, and a clock.")
                                                         sPrint("You found stickers from 1991, 1999 and 2001")
                                                         kepler_checked[6] = 1
-                                                        kepler_note += 'more stickers from 1991, 1999 and 2001; '
+                                                        KeplerPlanetBar()
                                                         input("\ncontinue <ENTER>")
                                                     else:
                                                         cls()
@@ -150,7 +160,7 @@ def kepler_452b():
                                         cls()
                                         sPrint("You've found an explosion hole.")
                                         kepler_checked[7] = 1
-                                        kepler_note += 'an explosion hole found in the city; '
+                                        KeplerPlanetBar()
                                         input("\ncontinue <ENTER>")
 
                                         choice7 = ''
@@ -166,7 +176,7 @@ def kepler_452b():
                                                         sPrint("The explosion hole's radius: 200 meters")
                                                         sPrint("The explosion type: ATOMIC BOMB", 70)
                                                         kepler_checked[8] = 1
-                                                        kepler_note += 'the explosion hole depth: 15 meters, radius: 200 meters, it was an atomic bomb; '
+                                                        KeplerPlanetBar()
                                                         input("\ncontinue <ENTER>")
                                                     else:
                                                         cls()
@@ -180,11 +190,10 @@ def kepler_452b():
                                                         percentageSurvivors = randint(0,100)
                                                         if percentageSurvivors > 90:
                                                             sPrint("You've found some highly injured, no signs of human being.")
-                                                            kepler_note += 'you have found some highly injured being, probably aliens; '
                                                         else:
                                                             sPrint("You've found nothing.")
-                                                            kepler_note += 'no signs of survivors; '
                                                         kepler_checked[9] = 1
+                                                        KeplerPlanetBar()
                                                         input("\ncontinue <ENTER>")
                                                     else:
                                                         sPrint("You've already checked for survivors.")
@@ -209,7 +218,7 @@ def kepler_452b():
                                                                 sPrint("You hear some weird noise, and you see some shadows moving to the opposite direction.")
                                                                 sPrint("When you got down to the basement, everything disappeared, you found nothing.")
                                                                 kepler_checked[11] = 1
-                                                                kepler_note += 'in a high building basement found nothing; '
+                                                                KeplerPlanetBar()
                                                                 input("\ncontinue <ENTER>")
                                                             else:
                                                                 sPrint("You've already checked the basement.")
@@ -232,8 +241,8 @@ def kepler_452b():
                                                                                     cls()
                                                                                     if kepler_checked[12] == 0:
                                                                                         sPrint("You found a lot of acid, and a dead Alien.")
-                                                                                        kepler_note += 'found acid, and dead Alien; '
                                                                                         kepler_checked[12] = 1
+                                                                                        KeplerPlanetBar()
                                                                                         input("\ncontinue <ENTER>")
                                                                                     else:
                                                                                         sPrint("You've already checked the bathroom.")
@@ -242,8 +251,8 @@ def kepler_452b():
                                                                                     cls()
                                                                                     if kepler_checked[13] == 0:
                                                                                         sPrint("There is a lot of blood on the bed.")
-                                                                                        kepler_note += 'blood on a bed; '
                                                                                         kepler_checked[13] = 1
+                                                                                        KeplerPlanetBar()
                                                                                         input("\ncontinue <ENTER>")
                                                                                     else:
                                                                                         sPrint("You've already checked the living room.")
@@ -254,6 +263,7 @@ def kepler_452b():
                                                                             sPrint("In the second romm the bathroom's door was jammed.")
                                                                             sPrint("For your own safety you left the room.")
                                                                             kepler_checked[14] = 1
+                                                                            KeplerPlanetBar()
                                                                             input("\ncontinue <ENTER>")
                                                                         else:
                                                                             sPrint("You've already checked this room.")
@@ -285,27 +295,28 @@ def kepler_452b():
                                                 cls()
                                                 sPrint("As you go closer to the wall some Aliens running away.")
                                                 kepler_checked[10] = 1
-                                                kepler_note += 'there is a big chance of aliens are still lives here; '
+                                                KeplerPlanetBar()
                                                 input("\ncontinue <ENTER>")
                                             case '2':
                                                 cls()
                                                 sPrint("As you turned back an Alien attacked you.")
                                                 kepler_checked[10] = 1
-                                                kepler_note += 'there is still aliens alive, and they could be agressive; '
+                                                KeplerPlanetBar()
                                                 input("\ncontinue <ENTER>")     
 def seaOrCityMenu():
     cls()
+    variables.userInterface()
     sPrint("You succesfully landed at the Kepler-452b landing site.\n")
 
     print('exit - Exit from this planet')
     print('1 - Go to the sea shore')
     print('2 - Go into the city')
-    print('n - Notes from the planet')
 
     return(input('Please choose a location: '))
 
 def sea1_water():
     cls()
+    variables.userInterface()
     sPrint("You are at the sea shore.\n")
 
     print('0 - Go back to the landing site')
@@ -316,6 +327,7 @@ def sea1_water():
 
 def sea2_water():
     cls()
+    variables.userInterface()
     sPrint("You are in the water.\n")
 
     print('0 - Go back to the shore')
@@ -326,6 +338,7 @@ def sea2_water():
 
 def city1_choice():
     cls()
+    variables.userInterface()
     sPrint("You are at the outer city.\n")
 
     print('0 - Go back to the landing site')
@@ -336,6 +349,7 @@ def city1_choice():
 
 def city2_choice():
     cls()
+    variables.userInterface()
     sPrint("You are in the abandoned house.\n")
 
     print('0 - Go out')
@@ -347,6 +361,7 @@ def city2_choice():
 
 def city3_livingRoom():
     cls()
+    variables.userInterface()
     sPrint("You are in the abandoned house.\n")
 
     print('0 - Go out')
@@ -357,6 +372,7 @@ def city3_livingRoom():
 
 def city4_innerCity():
     cls()
+    variables.userInterface()
     sPrint("You are in the Inner City.\n")
 
     print('0 - Go back to the outer city')
@@ -367,6 +383,7 @@ def city4_innerCity():
 
 def city5_innerCity():
     cls()
+    variables.userInterface()
     sPrint("You are at the explosion hole.\n")
 
     print('0 - Go back')
@@ -377,6 +394,7 @@ def city5_innerCity():
 
 def city6_innerCityShadow():
     cls()
+    variables.userInterface()
     sPrint("You see a strange shadow on the wall infront of you.")
 
     print('1 - Go and examine the shadow')
@@ -386,6 +404,7 @@ def city6_innerCityShadow():
 
 def city7_otherSide():
     cls()
+    variables.userInterface()
     sPrint("You are at the other side of the city.")
 
     print('0 - Go back')
@@ -396,6 +415,7 @@ def city7_otherSide():
 
 def city8_highBuilding():
     cls()
+    variables.userInterface()
     sPrint("You are in the high building.")
 
     print('0 - Go back')
@@ -406,6 +426,7 @@ def city8_highBuilding():
 
 def city9_highFloor():
     cls()
+    variables.userInterface()
     sPrint("You are at the high building's first floor.")
 
     print('0 - Go back')
@@ -416,6 +437,7 @@ def city9_highFloor():
 
 def city10_highRoom1():
     cls()
+    variables.userInterface()
     sPrint("You are in Room 1.")
 
     print('0 - Go back')
@@ -426,6 +448,7 @@ def city10_highRoom1():
 
 def city11_flatRooms():
     cls()
+    variables.userInterface()
     sPrint("You are in the flat building.")
 
     print('0 - Go back')
