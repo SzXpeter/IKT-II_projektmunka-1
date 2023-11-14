@@ -5,6 +5,7 @@ from random import randint
 
 # 0: fieldGroundSample, 1: fieldAirQuality, 2: mountainWallSample, 3: mountainDrawings
 proxima_checked = [0, 0, 0, 0]
+proximaRad = 8
 
 def KeplerPlanetBar():
     x = 0
@@ -14,12 +15,26 @@ def KeplerPlanetBar():
     print(f"Planet examination = {x:.2f}%")
 
 def proxima_centauri_b():
+    global proxima_checked
+    if planet() == "dead":
+        proxima_checked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        sPrint("You died.")
+        sPrint("You lose all your progress on this planet and return to orbit.")
+        input("continue <ENTER>")
+        return 0
+
+def planet():
     cls()
     choice1 = ''
     while choice1 != 'exit':
         choice1 = mountainOrField()
 
         match choice1:
+            case '0':
+                variables.hp = 100
+                variables.O2 = 100
+                variables.rad = 0
+                sPrint("You successfully restocked")
             case '1':
                 cls()
                 choice2 = ''
@@ -118,16 +133,21 @@ def proxima_centauri_b():
 
 def mountainOrField():
     cls()
+    variables.userInterface()
+    variables.statUpdate(proximaRad)
     sPrint("You succesfully landed at the Proxima Centauri b.\n")
 
     print('exit - Exit from this planet')
     print('1 - Go to a open field')
     print('2 - Cave in the mountain near to you')
+    print('0 - restock')
 
     return(input('Please choose a location: '))
 
 def fieldChoice():
     cls()
+    variables.userInterface()
+    variables.statUpdate(proximaRad)
     sPrint("You arrived at the open field.\n")
 
     print('0 - Go back')
@@ -138,6 +158,8 @@ def fieldChoice():
 
 def mountainChoice():
     cls()
+    variables.userInterface()
+    variables.statUpdate(proximaRad)
     sPrint("You've caved the mountains's surface.\n")
 
     print('0 - Go back')
@@ -149,6 +171,8 @@ def mountainChoice():
 
 def mountainWind():
     cls()
+    variables.userInterface()
+    variables.statUpdate(proximaRad)
     sPrint("Do you want to examine it?\n")
 
     print('0 - Go back')
@@ -159,6 +183,8 @@ def mountainWind():
 
 def mountainLava():
     cls()
+    variables.userInterface()
+    variables.statUpdate(proximaRad)
     sPrint("Do you want to examine it?\n")
 
     print('0 - No, go back')

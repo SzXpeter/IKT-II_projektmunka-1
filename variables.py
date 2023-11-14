@@ -1,6 +1,6 @@
 from time import sleep
 
-def sPrint(text, wps = 1000):
+def sPrint(text, wps = 65):
     for i in range(len(text)):
         print(text[i], end = "")
         sleep(1/wps)

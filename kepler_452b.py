@@ -18,19 +18,26 @@ def KeplerPlanetBar():
     print(f"Planet examination = {x:.2f}%")
 
 def kepler_452b():
+    global kepler_checked
     if planet() == "dead":
         kepler_checked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         sPrint("You died.")
         sPrint("You lose all your progress on this planet and return to orbit.")
         input("continue <ENTER>")
         return 0
+    
+keplerRad = 6
 
 def planet():
     choice1 = ''
     while choice1 !='exit':
         choice1 = seaOrCityMenu()
-
         match choice1:
+            case '0':
+                variables.hp = 100
+                variables.O2 = 100
+                variables.rad = 0
+                sPrint("You successfully restocked")
             case '1':
                 choice2 = ''
                 while choice2 != '0':
@@ -306,17 +313,20 @@ def planet():
 def seaOrCityMenu():
     cls()
     variables.userInterface()
+    variables.statUpdate(keplerRad)
     sPrint("You succesfully landed at the Kepler-452b landing site.\n")
 
     print('exit - Exit from this planet')
     print('1 - Go to the sea shore')
     print('2 - Go into the city')
+    print('0 - restock')
 
     return(input('Please choose a location: '))
 
 def sea1_water():
     cls()
     variables.userInterface()
+    variables.statUpdate(keplerRad)
     sPrint("You are at the sea shore.\n")
 
     print('0 - Go back to the landing site')
@@ -328,6 +338,7 @@ def sea1_water():
 def sea2_water():
     cls()
     variables.userInterface()
+    variables.statUpdate(keplerRad)
     sPrint("You are in the water.\n")
 
     print('0 - Go back to the shore')
@@ -339,6 +350,7 @@ def sea2_water():
 def city1_choice():
     cls()
     variables.userInterface()
+    variables.statUpdate(keplerRad)
     sPrint("You are at the outer city.\n")
 
     print('0 - Go back to the landing site')
@@ -350,6 +362,7 @@ def city1_choice():
 def city2_choice():
     cls()
     variables.userInterface()
+    variables.statUpdate(keplerRad)
     sPrint("You are in the abandoned house.\n")
 
     print('0 - Go out')
@@ -362,6 +375,7 @@ def city2_choice():
 def city3_livingRoom():
     cls()
     variables.userInterface()
+    variables.statUpdate(keplerRad)
     sPrint("You are in the abandoned house.\n")
 
     print('0 - Go out')
@@ -373,6 +387,7 @@ def city3_livingRoom():
 def city4_innerCity():
     cls()
     variables.userInterface()
+    variables.statUpdate(keplerRad)
     sPrint("You are in the Inner City.\n")
 
     print('0 - Go back to the outer city')
@@ -384,6 +399,7 @@ def city4_innerCity():
 def city5_innerCity():
     cls()
     variables.userInterface()
+    variables.statUpdate(keplerRad)
     sPrint("You are at the explosion hole.\n")
 
     print('0 - Go back')
@@ -395,6 +411,7 @@ def city5_innerCity():
 def city6_innerCityShadow():
     cls()
     variables.userInterface()
+    variables.statUpdate(keplerRad)
     sPrint("You see a strange shadow on the wall infront of you.")
 
     print('1 - Go and examine the shadow')
@@ -405,6 +422,7 @@ def city6_innerCityShadow():
 def city7_otherSide():
     cls()
     variables.userInterface()
+    variables.statUpdate(keplerRad)
     sPrint("You are at the other side of the city.")
 
     print('0 - Go back')
@@ -416,6 +434,7 @@ def city7_otherSide():
 def city8_highBuilding():
     cls()
     variables.userInterface()
+    variables.statUpdate(keplerRad)
     sPrint("You are in the high building.")
 
     print('0 - Go back')
@@ -427,6 +446,7 @@ def city8_highBuilding():
 def city9_highFloor():
     cls()
     variables.userInterface()
+    variables.statUpdate(keplerRad)
     sPrint("You are at the high building's first floor.")
 
     print('0 - Go back')
@@ -438,6 +458,7 @@ def city9_highFloor():
 def city10_highRoom1():
     cls()
     variables.userInterface()
+    variables.statUpdate(keplerRad)
     sPrint("You are in Room 1.")
 
     print('0 - Go back')
@@ -449,6 +470,7 @@ def city10_highRoom1():
 def city11_flatRooms():
     cls()
     variables.userInterface()
+    variables.statUpdate(keplerRad)
     sPrint("You are in the flat building.")
 
     print('0 - Go back')

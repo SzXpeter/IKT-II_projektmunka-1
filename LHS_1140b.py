@@ -3,9 +3,9 @@ from variables import sPrint, userInterface
 #ocean sample, ocean bottom sample, swamp plant sample, swamp scan
 LHSLand = [0, 0, 0, 0]
 #sea serpent photo, amphitere scan, hydra scan, hydra photo, hydra egg scan, hydra egg photo, dragon egg scan, dragon egg photo, dragon scan, dragon photo
-LHSAliens = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+LHSAliens = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-LHSRad = 5
+LHSRad = 3
 
 def LHSLandBar():
     x = 0
@@ -24,7 +24,7 @@ def LHSAlienBar():
 def lhs_1140b():
     global LHSLand, LHSAliens
     os.system("cls")
-    sPrint("You succesfully landed on Trappist-1f.")
+    sPrint("You succesfully landed on LHS 1140b.")
     input("continue <ENTER>")
     if sea_shore() == "dead":
         LHSLand = [0, 0, 0, 0]
@@ -244,6 +244,8 @@ def inner_swamp():
             case '2':
                 if math_rocks() == "dead":
                     return "dead"
+                sPrint("You get across the lake safely and quickly.")
+                sPrint("You look back and see two eyes looking at you from between the logs.")
                 if amphitere() == "dead":
                     return "dead"
                 else:
@@ -340,10 +342,10 @@ def bottom_mountain():
                 input("continue<ENTER>")
                 if upper_mountain() == "dead":
                     return "dead"
-                elif upper_mountain() == "dragon":
+                else:
+                    if variables.statUpdate(LHSRad) == "dead":
+                        return "dead"
                     return 0
-                if variables.statUpdate(LHSRad) == "dead":
-                    return "dead"
             case '2':
                 if cave_entrance() == "dead":
                     return "dead"
@@ -384,6 +386,8 @@ def upper_mountain():
                 input("continue<ENTER>")
                 if dragon() == "dead":
                     return "dead"
+                else:
+                    return "dragon"
                 
 def dragon():
     global LHSAliens
@@ -405,38 +409,40 @@ def dragon():
                 return "dead"
             case '2':
                 sPrint("You start running down the mountain the dragon chasing right behind you.")
+                v = ''
                 while v != '1' and v != '2':
                     print("\n\t1. Run into the woods")
                     print("\t2. Run into the open fields")
                     v = input("choice: ")
                 match v :
-                    case '0':
-                        return 0
                     case '1':
+                        v = ''
                         sPrint("You run into the woods.")
                         sPrint("The dragon tries to dive for you but it gets stuck on the trees.")
                         input("continue<ENTER>")
-                        while v != '1' and v != '2':
-                            os.system("cls")
-                            userInterface()
-                            sPrint("You're standing in front of the dragon.")
-                            print("\n\t1. Take photo")
-                            print("\t2. Scan it")
-                            print("\t0. Leave")
-                            v = input("choice: ")
-                        match v :
-                            case '0':
-                                return "dragon"
-                            case '1':
-                                sPrint("You take a photo of the dragon.")
-                                LHSAliens[9] = 1
-                                LHSAlienBar()
-                                input("continue<ENTER>")
-                            case '2':
-                                sPrint("You scan the dragon.")
-                                LHSAliens[8] = 1
-                                LHSAlienBar()
-                                input("continue<ENTER>")
+                        while v != '0':
+                            v = ''
+                            while v != '1' and v != '2' and v != '0':
+                                os.system("cls")
+                                userInterface()
+                                sPrint("You're standing in front of the dragon.")
+                                print("\n\t1. Take photo")
+                                print("\t2. Scan it")
+                                print("\t0. Leave")
+                                v = input("choice: ")
+                            match v :
+                                case '0':
+                                    return "dragon"
+                                case '1':
+                                    sPrint("You take a photo of the dragon.")
+                                    LHSAliens[9] = 1
+                                    LHSAlienBar()
+                                    input("continue<ENTER>")
+                                case '2':
+                                    sPrint("You scan the dragon.")
+                                    LHSAliens[8] = 1
+                                    LHSAlienBar()
+                                    input("continue<ENTER>")
                     case '2':
                         sPrint("You run into the open fields and the dragon torches you.")
                         return "dead"

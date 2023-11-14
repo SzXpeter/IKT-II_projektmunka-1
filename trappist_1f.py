@@ -17,8 +17,10 @@ def trappistLandBar():
 def trappistAlienBar():
     x = 0
     for i in range(len(trappist1fAliens)):
-        if trappist1fAliens[i] == 1:
-            x += 50
+        if trappist1fAliens == [1, 1, 1]:
+            x = 100
+        elif trappist1fAliens[i] == 1:
+            x += 100/3
     print(f"Alien examination = {x}%")
 
 def trappist_1f():
@@ -204,7 +206,7 @@ def far_away_waters():
             case '0':
                 return 0
             case '1':
-                trappist1fAliens[3] = 1
+                trappist1fAliens[1] = 1
                 trappistAlienBar()
                 sPrint("These plants have been chewed.")
                 input("continue<ENTER>")
