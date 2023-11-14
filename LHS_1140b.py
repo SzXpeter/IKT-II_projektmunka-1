@@ -5,7 +5,7 @@ LHSLand = [0, 0, 0, 0]
 #sea serpent photo, amphitere scan, hydra scan, hydra photo, hydra egg scan, dragon egg scan, dragon egg photo, dragon scan, dragon photo
 LHSAliens = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-LHSRad = 6
+LHSRad = 5
 
 def LHSLandBar():
     x = 0
@@ -225,7 +225,7 @@ def inner_swamp():
             os.system("cls")
             userInterface()
             sPrint("You're in inner swamp. And you come around a lake.")
-            print("\n\t1. Go around it.")
+            print("\n\t1. Go around it")
             print("\t2. Go across using the rocks")
             print("\t3. Go across using the logs")
             print("\t0. Go back to the outer swamps")
@@ -237,10 +237,13 @@ def inner_swamp():
                 sPrint("You go around the lake safely and quickly.")
                 sPrint("You look back and see two eyes looking at you from between the logs.")
                 input("continue <ENTER>")
-                amphitere()
+                if amphitere() == "dead":
+                    return "dead"
             case '2':
                 if math_rocks == "dead":
                     return "dead"
+                else:
+                    return 0
             case '3':
                 sPrint("As you jump across the lake log to log, one of them moves out of you and rips you to pieces.")
                 return "dead"
@@ -252,28 +255,46 @@ def amphitere():
     Exit = False
     while Exit == False:
         v = ''
-        while v != '1' and v != '2' and v != '3' and v != '0':
+        while v != '1' and v != '2' and v != '0':
             os.system("cls")
             userInterface()
-            sPrint("You're in inner swamp. And you are looking at a beast.")
-            print("\n\t1. Go around it.")
-            print("\t2. Go across using the rocks")
-            print("\t3. Go across using the logs")
+            sPrint("You're in the inner swamp. And you are looking at a beast.")
+            print("\n\t1. Take photo")
+            print("\t2. Scan it")
             print("\t0. Go back to the outer swamps")
             v = input("choice: ")
         match v :
             case '0':
                 return 0
             case '1':
-                sPrint("You go around the lake safely and quickly.")
-                sPrint("You look back and see two eyes looking at you from between the logs.")
-                amphitere()
-            case '2':
-                if math_rocks == "dead":
-                    return "dead"
-            case '3':
-                sPrint("As you jump across the lake log to log, one of them moves out of you and rips you to pieces.")
+                sPrint("As the flash flashes it launches at you.")
                 return "dead"
+            case '2':
+                sPrint("It looks like some type of amphitere.")
+                sPrint("It starts sliding towards you.")
+                v = ''
+                while v != '1' and v != '2' and v != '3':
+                    os.system("cls")
+                    userInterface()
+                    sPrint("You're in the inner swamp. And you are looking at an amphitere.")
+                    print("\n\t1. Run into the fields")
+                    print("\t2. Stand still")
+                    print("\t3. Run into the woods")
+                    v = input("choice: ")
+                    match v :
+                        case '1':
+                            sPrint("You try to run into the fields.")
+                            sPrint("But the thing starts flying and it easily catches up to you.")
+                            return "dead"
+                        case '2':
+                            sPrint("You stand still and the thing slides closer and launches at you.")
+                            return "dead"
+                        case '3':
+                            sPrint("You run into the woods and thing starts flying and chasing you.")
+                            sPrint("You keep on running until you hear a clashing sound above you.")
+                            sPrint("You return to the sea shore.")
+                            input("continue<ENTER>")
+                            return 0
 
 def bottom_mountain():
     pass
