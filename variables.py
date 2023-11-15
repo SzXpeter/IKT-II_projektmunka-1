@@ -24,7 +24,7 @@ def restock():
     input("continue<ENTER>")
 
 def statUpdate(radUpdate, O2Update = 5):
-    global rad, O2, hp
+    global rad, O2, hp, deaths
     if O2 <= 0:
         O2 = 0
         hp -= 10
